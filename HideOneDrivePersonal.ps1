@@ -22,8 +22,10 @@ Set-ItemProperty -Path 'HKCR:\CLSID\{018D5C66-4533-4307-9B53-224DE2ED1FE6}' -Nam
 $OneDriveOnOff = Get-ItemProperty -Path 'HKCR:\CLSID\{018D5C66-4533-4307-9B53-224DE2ED1FE6}' | Select-Object -ExpandProperty ('System.IsPinnedToNameSpaceTree')
 if ($OneDriveOnOff -eq 0)
     {
-   echo "System.IsPinnedToNameSpaceTree is set to $OneDriveOnOff." 
-   echo "Restart File Explorer to Ensure OneDrive is Removed."
+    stop-process -name explorer -Force
+    echo "System.IsPinnedToNameSpaceTree is set to $OneDriveOnOff." 
+    echo "OneDrive has been unpinned for this user."
+    echo "Explorer Service has been restarted."
    }
 elseif ($OneDriveOnOff -eq 1)
     {
