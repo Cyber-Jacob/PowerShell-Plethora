@@ -1,0 +1,17 @@
+$Printer_Name = "<Printer>"
+$Printers = Get-Printer ; Foreach ($Printer in $Printers){Get-PrintConfiguration -PrinterName $Printer.name}
+if ($Printers -contains $Printer_Name) 
+{
+    Set-PrintConfiguration -PrinterName "$Printer_Name" -color 0 
+    $printer_status = (Get-PrintConfiguration -PrinterName "$Printer_Name")
+    $printer_color_state = ($printer_status).Color
+    
+    if ($printer_color_state -eq 0) 
+    {
+        echo  $printer_status
+        echo "Color status is $printer_color_state. Color is set to Black and White."
+    }  
+}
+else {
+    echo "Could not find printer ($Printer_Name)"
+    }
