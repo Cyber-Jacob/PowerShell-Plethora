@@ -1,16 +1,15 @@
-#=============================================================================================================================
-#Author:           Jacob Schweyer
-# Script Name:     M365Tenant_MFA_Check_and_Generate_CSVs.ps1
-# Description:     Produces reports and CSVs from an M365 environment regarding which users are and are not MFA-enabled or enforced 
-#                  Output is CSV's which can be used immediately* for bulk-updating MFA in the same M365 tenant.
-
-# This script is not supported under any Microsoft standard support program or service and is distributed under the MIT license
-# 
-# Permission is hereby granted, free of charge, to any person obtaining a copy of this software who seeks to increase the security
-# posture of their organization by streamlining or creating an effective process to report on and enforce MFA for large sets of users.
-# Others are welcome to use this as well, but I'm not sure what use it will be to you. Please let me know, i'd be delighted if this helps
-# even one person or organization
-#=============================================================================================================================
+###########################################################################################################################################
+#Author:           Jacob Schweyer                                                                                                         #
+# Script Name:     M365Tenant_MFA_Check_and_Generate_CSVs.ps1                                                                             #
+# Description:     Produces reports and CSVs from an M365 environment regarding which users are and are not MFA-enabled or enforced       #
+#                  Output is CSV's which can be used immediately* for bulk-updating MFA in the same M365 tenant.                          #
+#                                                                                                                                         #
+#                                                                                                                                         #
+# Permission is hereby granted, free of charge, to any person obtaining a copy of this software who seeks to increase the security        #
+# posture of their organization by streamlining or creating an effective process to report on and enforce MFA for large sets of users.    #
+# Others are welcome to use this as well, but I'm not sure what use it will be to you. Please let me know, i'd be delighted if this helps #
+# even one person or organization                                                                                                         #
+###########################################################################################################################################
 
 
 
