@@ -1,5 +1,5 @@
 ###########################################################################################################################################
-#Author:           Jacob Schweyer                                                                                                         #
+# Author:           Jacob Schweyer                                                                                                        #
 # Script Name:     M365Tenant_MFA_Check_and_Generate_CSVs.ps1                                                                             #
 # Description:     Produces reports and CSVs from an M365 environment regarding which users are and are not MFA-enabled or enforced       #
 #                  Output is CSV's which can be used immediately* for bulk-updating MFA in the same M365 tenant.                          #
@@ -103,8 +103,8 @@ $Global_licensed_mfa_users | Out-File '<INSERT PATH HERE>\licensed_mfa-users.csv
 
 #This statement generates a CSV of licensed users who are not enabled or enforced for MFA in the M365 tenant. This can be used as a Bulk-update CSV with
 #minimal editing and some slight CSV/XLSX manipulation knowhow. It would be trivial to change this script to include an update in the MFA Status field
-#of "Enabled" so the CSV generated can be used immediately for bulk-updates. I've chosen to exclude that so that the end user of this script has to make some 
-#slight changes
+#of "Enabled" so the CSV generated can be used immediately for bulk-updates. I've chosen to exclude that so that the end user of this script doesn't reset
+#enforced users to enabled and has to make some slight changes
 
 $global_licensed_none_mfa_users | Out-File '<INSERT PATH HERE>\licensed_none-MFA-users.csv'
 
