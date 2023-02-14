@@ -1,4 +1,5 @@
-﻿Import-Module $env:SyncroModule
+#This script was written to work with the RMM and PSA tool, SyncroMSP. Uncomment the import statement and the set-asset-field statements to log to Syncro Custom A
+#﻿Import-Module $env:SyncroModule
 #EncryptionStatus checks whether or not drive is encrypted. Values are: FullyEncrypted , or FullyDecrypted
 $encryptionstatus = Get-BitLockerVolume | Select-Object -ExpandProperty VolumeStatus
 #tpmstatus checks if a TPM is present. This variable can also look for TPM version
@@ -10,9 +11,9 @@ if ($encryptionstatus -eq "FullyEncrypted"){
      $key = (Get-BitLockerVolume -MountPoint $OSDrive).KeyProtector|?{$_.KeyProtectorType -eq 'RecoveryPassword'}
      $kpi = [String]$key.KeyProtectorId
      $rec = [string]$key.RecoveryPassword
-     Set-Asset-Field -Subdomain $subdomain -Name "Bitlocker_Key_ID" -Value $kpi
+     #Set-Asset-Field -Subdomain $subdomain -Name "Bitlocker_Key_ID" -Value $kpi
      write-host "Set the Bitlocker_Key_ID field value to $kpi"
-     Set-Asset-Field -Subdomain $subdomain -Name "Bitlocker_Key" -Value $rec
+     #Set-Asset-Field -Subdomain $subdomain -Name "Bitlocker_Key" -Value $rec
      write-host "Set the Bitlocker_Key field value to $rec"
 
 } elseif ($tpmstatus -ne 'True'){
@@ -31,9 +32,9 @@ if ($encryptionstatus -eq "FullyEncrypted"){
     $key = (Get-BitLockerVolume -MountPoint $OSDrive).KeyProtector|?{$_.KeyProtectorType -eq 'RecoveryPassword'}
     $kpi = [String]$key.KeyProtectorId
     $rec = [string]$key.RecoveryPassword
-    Set-Asset-Field -Subdomain $subdomain -Name "Bitlocker_Key_ID" -Value $kpi
+    #Set-Asset-Field -Subdomain $subdomain -Name "Bitlocker_Key_ID" -Value $kpi
     write-host "Set the BitLocker_Key_ID field value to $kpi"
-    Set-Asset-Field -Subdomain $subdomain -Name "Bitlocker_Key" -Value $rec
+    #Set-Asset-Field -Subdomain $subdomain -Name "Bitlocker_Key" -Value $rec
     write-host "Set the Bitlocker_Key field value to $rec"
     #displays encryption state, if Bitlocker turned on successfully, the value changes from FullyDecrypted, so we check for that
     $encryptionstate= Get-BitLockerVolume | Select-Object -ExpandProperty VolumeStatus
@@ -46,7 +47,7 @@ catch
 #Error reporting for Syncro
 {
     Write-Host "Error Setting up Bitlocker. Make sure to run the cmdlet as an Admin: $_"
-    Create-Syncro-Ticket -Subdomain "<SUBDOMAIN>" -Subject "BitLocker Deployment Issue" -IssueType "PC Issue" -Status "New"
+    #Create-Syncro-Ticket -Subdomain "<SUBDOMAIN>" -Subject "BitLocker Deployment Issue" -IssueType "PC Issue" -Status "New"
 }
 }
 #Verbose text block. This is so we understand what happened with the machine, what it's TPM and encryption state REGARDLESS if Bitlocker successfully started
